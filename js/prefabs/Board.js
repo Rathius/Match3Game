@@ -101,3 +101,49 @@ Match3.Board.prototype.checkAdjacent = function(source, target) {
     var isAdjacent = (diffRow == 1 && diffCol == 0) || (diffRow == 0 && diffCol === 1);
     return isAdjacent;
 };
+
+// check if a chain exists
+Match3.Board.prototype.isChained = function(block) {
+    var isChained = false;
+    var variation = this.grid[block.row][block.col];
+    var row = block.row;
+    var col = block.col;
+
+    // check left
+    if(variation == this.grid[row][col - 1] && variation == this.grid[row][col - 2]) {
+        isChained = true;
+    }
+
+    // check right
+    if(variation == this.grid[row][col + 1] && variation == this.grid[row][col + 2]) {
+        isChained = true;
+    }
+
+    // check up
+    if(this.grid[row - 2]) {
+        if(variation == this.grid[row - 1][col] && variation == this.grid[row - 2][col]) {
+            isChained = true;
+        }
+    }
+
+    // check down
+    if(this.grid[row + 2]) {
+        if(variation == this.grid[row + 1][col] && variation == this.grid[row + 2][col]) {
+            isChained = true;
+        }
+    }
+
+    // check if in center of chain - horizontal
+    if(variation == this.grid[row][col - 1] && variation == this.grid[row][col + 1]) {
+        isChained = true;
+    }
+
+    // check if in center of chain - vertical
+    if(this.grid[row +1] && this.grid[row - 1]) {
+        if(variation == this.grid[row + 1][col] && variation == this.grid[row - 1][col]) {
+            isChained = true;
+        }
+    }
+
+    return isChained;
+};
