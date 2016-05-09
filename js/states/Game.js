@@ -15,6 +15,7 @@ Match3.GameState = {
 
     //board model
     this.board = new Match3.Board(this, this.NUM_ROWS, this.NUM_COLS, this.NUM_VARIATIONS);
+    this.board.consoleLog();
   }
 
 };
