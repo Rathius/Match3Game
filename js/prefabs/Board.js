@@ -176,7 +176,7 @@ Match3.Board.prototype.clearChains = function(){
     }, this);
 };
 
-/*// drop a block in the main grid from one position to another
+// drop a block in the main grid from one position to another
 Match3.Board.prototype.dropBlock = function(sourceRow, targetRow, col){
     this.grid[targetRow][col] = this.grid[sourceRow][col];
     this.grid[sourceRow][col] = 0;
@@ -184,6 +184,6 @@ Match3.Board.prototype.dropBlock = function(sourceRow, targetRow, col){
 
 // drop a block in the reserve grid to a position in the main grid
 Match3.Board.prototype.dropReserveBlock = function(sourceRow, targetRow, col){
-    this.grid[targetRow][col] = this.grid[sourceRow][col];
+    this.grid[targetRow][col] = this.reserveGrid[sourceRow][col];
     this.reserveGrid[sourceRow][col] = 0;
-};*/
+};
