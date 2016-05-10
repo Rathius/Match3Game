@@ -147,3 +147,43 @@ Match3.Board.prototype.isChained = function(block) {
 
     return isChained;
 };
+
+// find all chains
+Match3.Board.prototype.findAllChains = function() {
+    var chained = [];
+    var i, j;
+
+    for(i = 0; i < this.rows; i++) {
+        for(j = 0; j < this.cols; j++) {
+            if(this.isChained({row: i, col: j})) {
+                chained.push({row: i, col: j});
+            }
+        }
+    }
+
+    console.log(chained);
+    return chained;
+};
+
+// clear all chains
+Match3.Board.prototype.clearChains = function(){
+    // get all blocks that need to be cleard
+    var chainedBlocks = this.findAllChains();
+
+    // set them to zero
+    chainedBlocks.forEach(function(block){
+        this.grid[block.row][block.col] = 0;
+    }, this);
+};
+
+/*// drop a block in the main grid from one position to another
+Match3.Board.prototype.dropBlock = function(sourceRow, targetRow, col){
+    this.grid[targetRow][col] = this.grid[sourceRow][col];
+    this.grid[sourceRow][col] = 0;
+};
+
+// drop a block in the reserve grid to a position in the main grid
+Match3.Board.prototype.dropReserveBlock = function(sourceRow, targetRow, col){
+    this.grid[targetRow][col] = this.grid[sourceRow][col];
+    this.reserveGrid[sourceRow][col] = 0;
+};*/
