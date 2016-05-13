@@ -5,7 +5,7 @@ Match3.GameState = {
   init: function() {
     this.NUM_ROWS = 8;
     this.NUM_COLS = 8;
-    this.NUM_VARIATIONS = 7;
+    this.NUM_VARIATIONS = 6;
     this.BLOCK_SIZE = 35;
     this.ANIMATION_TIME = 200;
   },
