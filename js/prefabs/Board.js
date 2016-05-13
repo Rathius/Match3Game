@@ -191,14 +191,14 @@ Match3.Board.prototype.dropReserveBlock = function(sourceRow, targetRow, col){
 // move down blocks to fill empty blocks
 Match3.Board.prototype.updateGrid = function(){
     var i, j, k, foundblock;
-    
+
     // loop through all rows from bottom up
     for(i = this.rows - 1; i >= 0; i--){
         for(j = 0; j < this.cols; j++) {
             // if the block is zero, climb up to get a non-zero block
             if(this.grid[i][j] === 0) {
                 foundBlock = false;
-                
+
                 // climb up in the main grid
                 for(k = i; k >= 0; k--) {
                     if(this.grid[k][j] > 0) {
@@ -207,9 +207,9 @@ Match3.Board.prototype.updateGrid = function(){
                         break;
                     }
                 }
-                
+
                 if(!foundBlock) {
-                    
+
                     // climb up in the reserve grid
                     for(k = this.RESERVE_ROW - 1; k >= 0; k--) {
                         if(this.reserveGrid[k][j] > 0) {
@@ -221,7 +221,7 @@ Match3.Board.prototype.updateGrid = function(){
             }
         }
     }
-    
+
     //repopulate the reserve
     this.populateReserveGrid();
 };
