@@ -22,3 +22,12 @@ Match3.Block.prototype.reset = function(x, y, data) {
     this.col = data.col;
 };
 
+Match3.Block.prototype.kill = function() {
+    this.loadTexture('deadBlock');
+    this.col = null;
+    this.row = null;
+
+    this.game.time.events.add(this.state.ANIMATION_TIME/2, function(){
+        Phaser.Sprite.prototype.kill.call(this);
+    }, this);
+};
