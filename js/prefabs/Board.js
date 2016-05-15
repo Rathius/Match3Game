@@ -46,6 +46,12 @@ Match3.Board.prototype.populateGrid = function(){
             this.grid[i][j] = variation;
         }
     }
+
+    // check if there are chains present at start
+    var chains = this.findAllChains();
+    if(chains.length > 0) {
+        this.populateGrid();
+    }
 };
 
 Match3.Board.prototype.populateReserveGrid = function(){
@@ -183,12 +189,16 @@ Match3.Board.prototype.clearChains = function(){
 Match3.Board.prototype.dropBlock = function(sourceRow, targetRow, col){
     this.grid[targetRow][col] = this.grid[sourceRow][col];
     this.grid[sourceRow][col] = 0;
+
+    this.state.dropBlock(sourceRow, targetRow, col);
 };
 
 // drop a block in the reserve grid to a position in the main grid
 Match3.Board.prototype.dropReserveBlock = function(sourceRow, targetRow, col){
     this.grid[targetRow][col] = this.reserveGrid[sourceRow][col];
     this.reserveGrid[sourceRow][col] = 0;
+
+    this.state.dropReserveBlock(sourceRow, targetRow, col);
 };
 
 // move down blocks to fill empty blocks
